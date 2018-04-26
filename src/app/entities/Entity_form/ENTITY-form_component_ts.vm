@@ -225,7 +225,7 @@ export class $formComponentName implements OnInit {
     this.${_entityService}.add(this.form.value).subscribe(
       result => {
         this._notificationService.success('Success', '${entity.name} added successfuly');
-        this._router.navigate(['./${LCentityName}-form', ${entity.keyAttributesNamesAsString(', ', 'this.form.value.', '')}]);
+        this._router.navigate(['./${LCentityName}-form', ${entity.keyAttributesNamesAsString(', ', 'result.', '')}]);
       },
       error => {1
         if (error.status === this.CONFLICT_ERROR) {
