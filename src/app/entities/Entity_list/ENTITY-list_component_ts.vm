@@ -10,7 +10,7 @@ $env.setLanguage('TypeScript')
 // Modules imports
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 // Services imports
 import { PagerService } from './../../../services/pager.service';
@@ -46,7 +46,7 @@ export class $listComponentName implements OnInit, OnChanges {
     private _router: Router,
     private _notificationService: NotificationService,
     private pagerService: PagerService,
-    public dialog: MdDialog) { }
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     // On init get all ${entity.name}s

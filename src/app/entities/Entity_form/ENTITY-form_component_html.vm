@@ -7,34 +7,34 @@
   </div>
   <form [formGroup]="form" novalidate (ngSubmit)="save()">
     <div class="add-edit-form">
-      <md-grid-list cols="2" rowHeight="70px">
+      <mat-grid-list cols="2" rowHeight="70px">
 #foreach ( $attrib in $entity.attributes)
 #if ($attrib.isKeyElement() && !$attrib.isFK())
-        <md-grid-tile [colspan]="1" [rowspan]="1">
-          <md-input-container class="form-full-width">
-            <input mdInput placeholder="${attrib.name}#if($attrib.isAutoIncremented())(disabled)#else #end" formControlName="${attrib.name}">
-          </md-input-container>
-        </md-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-input-container class="form-full-width">
+            <input matInput placeholder="${attrib.name}#if($attrib.isAutoIncremented())(disabled)#else #end" formControlName="${attrib.name}">
+          </mat-input-container>
+        </mat-grid-tile>
 #elseif ($attrib.isDateType())
-        <md-grid-tile [colspan]="1" [rowspan]="1">
-          <md-form-field class="form-full-width">
-            <input mdInput [mdDatepicker]="picker" placeholder="${attrib.name}" required formControlName="${attrib.name}">
-            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-            <md-datepicker ${SHARP}picker></md-datepicker>
-            <md-error *ngIf="form.controls.${attrib.name}.hasError('required')">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="form-full-width">
+            <input matInput [mdDatepicker]="picker" placeholder="${attrib.name}" required formControlName="${attrib.name}">
+            <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker ${SHARP}picker></mat-datepicker>
+            <mat-error *ngIf="form.controls.${attrib.name}.hasError('required')">
               ${attrib.name} is required
-            </md-error>
-          </md-form-field>
-        </md-grid-tile>
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 #elseif ( $attrib.isFK() && $attrib.isKeyElement())
 #set($referencedEntity = $fn.uncapitalize($attrib.referencedEntityName))
 #set($keyAttrib = $attrib.referencedEntity.keyAttribute.name)
-        <md-grid-tile [colspan]="1" [rowspan]="1">
-          <md-select placeholder="${attrib.referencedEntityName}" formControlName="${attrib.name}" name="${referencedEntity}" class="form-full-width">
-            <md-option [value]="">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-select placeholder="${attrib.referencedEntityName}" formControlName="${attrib.name}" name="${referencedEntity}" class="form-full-width">
+            <mat-option [value]="">
               N/A
-            </md-option>
-            <md-option *ngFor="let ${referencedEntity} of ${referencedEntity}sData" [value]="${referencedEntity}.$keyAttrib">
+            </mat-option>
+            <mat-option *ngFor="let ${referencedEntity} of ${referencedEntity}sData" [value]="${referencedEntity}.$keyAttrib">
 #foreach ( $refAttrib in $attrib.referencedEntity.attributes)
 #if ($foreach.count < $attrib.referencedEntity.attributes.size())
 #if ($refAttrib.isKeyElement())
@@ -47,18 +47,18 @@
 #end
 #end
               $options
-            </md-option>
-          </md-select>
-        </md-grid-tile>
+            </mat-option>
+          </mat-select>
+        </mat-grid-tile>
 #elseif ( $attrib.isFK() )
 #set($referencedEntity = $fn.uncapitalize($attrib.referencedEntityName))
 #set($keyAttrib = $attrib.referencedEntity.keyAttribute.name)
-        <md-grid-tile [colspan]="1" [rowspan]="1">
-          <md-select placeholder="${attrib.referencedEntityName}" formControlName="${attrib.name}" name="${referencedEntity}" class="form-full-width">
-            <md-option [value]="">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-select placeholder="${attrib.referencedEntityName}" formControlName="${attrib.name}" name="${referencedEntity}" class="form-full-width">
+            <mat-option [value]="">
               N/A
-            </md-option>
-            <md-option *ngFor="let ${referencedEntity} of ${referencedEntity}sData" [value]="${referencedEntity}.$keyAttrib">
+            </mat-option>
+            <mat-option *ngFor="let ${referencedEntity} of ${referencedEntity}sData" [value]="${referencedEntity}.$keyAttrib">
 #foreach ( $refAttrib in $attrib.referencedEntity.attributes)
 #if ($foreach.count < $attrib.referencedEntity.attributes.size())
 #if ($refAttrib.isKeyElement())
@@ -71,21 +71,21 @@
 #end
 #end
               $options
-            </md-option>
-          </md-select>
-        </md-grid-tile>
+            </mat-option>
+          </mat-select>
+        </mat-grid-tile>
 #else
-        <md-grid-tile [colspan]="1" [rowspan]="1">
-          <md-input-container class="form-full-width">
-            <input mdInput placeholder="${attrib.name}" required formControlName="${attrib.name}">
-            <md-error *ngIf="!form.controls.${attrib.name}.valid">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-input-container class="form-full-width">
+            <input matInput placeholder="${attrib.name}" required formControlName="${attrib.name}">
+            <mat-error *ngIf="!form.controls.${attrib.name}.valid">
               ${attrib.name} is required
-            </md-error>
-          </md-input-container>
-        </md-grid-tile>	
+            </mat-error>
+          </mat-input-container>
+        </mat-grid-tile>	
 #end
 #end
-      </md-grid-list>
+      </mat-grid-list>
     </div>
     <div class="mdl-card__actions mdl-card--border">
       <div class="card-footer-button form-button">
@@ -103,6 +103,6 @@
     </div>
   </form>
   <div class="mdl-card__menu">
-    <a md-raised-button class="card-header-button" [routerLink]="['/${LCentityName}-list']">${entity.name} list</a>
+    <a mat-raised-button class="card-header-button" [routerLink]="['/${LCentityName}-list']">${entity.name} list</a>
   </div>
 </div>

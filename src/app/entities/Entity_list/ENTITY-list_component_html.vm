@@ -51,6 +51,6 @@
     <span class="paginationStats">Pages {{ pager.startPage }}-{{ this.pager.endPage }} of {{ pager.totalPages }}</span>
   </div>
   <div class="mdl-card__menu">
-    <a md-raised-button class="card-header-button" routerLink="../${LCentityName}-form"><md-icon>add</md-icon>Add</a>
+    <a mat-raised-button class="card-header-button" routerLink="../${LCentityName}-form"><mat-icon>add</mat-icon>Add</a>
   </div>
 </div>

@@ -29,7 +29,14 @@ import { HomeListComponent } from './home-list/home-list.component';
 // Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { MaterialModule, MdNativeDateModule } from '@angular/material';
+import { MatIconModule, 
+		 MatGridListModule, 
+		 MatSelectModule, 
+		 MatDialogModule, 
+		 MatFormFieldModule,
+		 MatCheckboxModule,
+    	 MatInputModule,
+		 MatNativeDateModule } from '@angular/material';
 
 // Services
 import { Configuration } from './app.configuration';
@@ -65,8 +72,14 @@ import { PagerService } from './services/pager.service';
     HttpModule,
     routing,
     BrowserAnimationsModule,
-    MaterialModule,
-    MdNativeDateModule,
+    MatIconModule, 
+	MatGridListModule, 
+	MatSelectModule, 
+	MatDialogModule, 
+	MatFormFieldModule,
+	MatCheckboxModule,
+    MatInputModule,
+    MatNativeDateModule,
     SimpleNotificationsModule.forRoot()
 ],
   providers: [

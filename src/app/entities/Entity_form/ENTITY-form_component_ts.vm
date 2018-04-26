@@ -10,7 +10,7 @@
 // Modules imports
 import { NotificationService } from './../../../services/notification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -67,7 +67,7 @@ export class $formComponentName implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _notificationService: NotificationService,
-    public dialog: MdDialog) { }
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getIdFromRouteParams();
