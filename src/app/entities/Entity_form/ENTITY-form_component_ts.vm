@@ -1,4 +1,7 @@
-#parse("../../../../include/entitiesNamesRef.vm")
+#set ( $baseServiceName = $entity.name + "Service" )
+#set ( $LCentityNameModel = $entity.name + ".model" )
+#set ( $LCentityNameService = $entity.name + ".service" )
+#set ( $formComponentName = $entity.name + "FormComponent" )
 #set ( $LCentityName = $fn.uncapitalize($entity.name) )
 #set ( $LCentityNameWithDot = $fn.uncapitalize($entity.name) + "." )
 #set ( $_entityService = "_" + $fn.uncapitalize($baseServiceName) )
