@@ -20,13 +20,20 @@ export abstract class GenericService<T> {
         this.headers.append('Accept', 'application/json');
     }
 
+    public  getEmbeddedList = (response: Response) => {
+        console.log (response);
+        const obj = response.json()._embedded;
+        const retval = obj[Object.keys(obj)[0]];
+        return  retval as T[];
+    }
+
     /**
      * Get all object by the GET Rest service
      * @return promise
      */
     public getAll = (): Observable<T[]> => {
         return this._http.get(this.actionUrl)
-            .map((response: Response) => response.json() as T[])
+            .map(this.getEmbeddedList)
             .catch(this.handleError);
     }
 
