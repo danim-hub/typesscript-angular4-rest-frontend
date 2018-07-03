@@ -4,6 +4,10 @@ $env.setLanguage('TypeScript')
 export interface $entity {
 #foreach ( $attrib in $entity.attributes)
 #set($LCattributeName = $fn.uncapitalize($attrib.name))
+#if($attrib.name == 'timestamp')
+	${LCattributeName}: string; // database timestamp are wrapped in strings
+#else
 	${LCattributeName}: $attrib.formattedType(0); // Wrapper Type : $attrib.formattedWrapperType(0)
+#end
 #end
 }
