@@ -21,7 +21,6 @@ export abstract class GenericService<T> {
     }
 
     public  getEmbeddedList = (response: Response) => {
-        console.log (response);
         const obj = response.json()._embedded;
         const retval = obj[Object.keys(obj)[0]];
         return  retval as T[];
