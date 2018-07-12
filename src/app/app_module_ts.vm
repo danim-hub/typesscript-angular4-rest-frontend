@@ -36,7 +36,9 @@ import { MatIconModule,
 		 MatFormFieldModule,
 		 MatCheckboxModule,
     	 MatInputModule,
-		 MatNativeDateModule } from '@angular/material';
+       MatDatepickerModule,
+		 MatNativeDateModule, 
+     MatTabsModule } from '@angular/material';
 
 // Services
 import { Configuration } from './app.configuration';
@@ -80,6 +82,9 @@ import { PagerService } from './services/pager.service';
 	MatCheckboxModule,
     MatInputModule,
     MatNativeDateModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
     SimpleNotificationsModule.forRoot()
 ],
   providers: [
