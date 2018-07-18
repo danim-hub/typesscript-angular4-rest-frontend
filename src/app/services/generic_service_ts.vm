@@ -94,7 +94,7 @@ export abstract class GenericService<T> {
         let idsUrl = '';
 
         keys.forEach(element => {
-            idsUrl += `${DOLLAR}{element}/`;
+            idsUrl += `${DOLLAR}{encodeURIComponent(element)}/`;
         });
 
         return idsUrl;
