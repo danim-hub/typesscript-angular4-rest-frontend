@@ -25,20 +25,25 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './about/about.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { HomeListComponent } from './home-list/home-list.component';
+import { LoginComponent } from './login/login.component';
 
 // Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { MatIconModule, 
-		 MatGridListModule, 
-		 MatSelectModule, 
-		 MatDialogModule, 
-		 MatFormFieldModule,
-		 MatCheckboxModule,
-    	 MatInputModule,
-       MatDatepickerModule,
-		 MatNativeDateModule, 
-     MatTabsModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatGridListModule,
+  MatSelectModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatTabsModule,
+  MatCardModule,
+  MatButtonModule
+} from '@angular/material';
 
 // Services
 import { Configuration } from './app.configuration';
@@ -52,6 +57,28 @@ import { EmitterService } from './services/emitter.service';
 import { NotificationService } from './services/notification.service';
 import { PagerService } from './services/pager.service';
 
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('630249236149-3to3c5t9hdob9cfcepltpqtm0ov58lud.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('818717241849417') // Facebook-App-Id
+  },
+  {
+    id: LinkedInLoginProvider.PROVIDER_ID,
+    provider: new LinkedInLoginProvider('785s52qkyqiayd', false)
+  }
+]);
+ 
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,11 +89,12 @@ import { PagerService } from './services/pager.service';
     NotFoundComponent,
     AboutComponent,
     DeleteDialogComponent,
-    HomeListComponent
-],
+    HomeListComponent,
+    LoginComponent
+  ],
   entryComponents: [
     DeleteDialogComponent
-],
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -74,19 +102,21 @@ import { PagerService } from './services/pager.service';
     HttpModule,
     routing,
     BrowserAnimationsModule,
-    MatIconModule, 
-	MatGridListModule, 
-	MatSelectModule, 
-	MatDialogModule, 
-	MatFormFieldModule,
-	MatCheckboxModule,
+    MatIconModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
     MatInputModule,
-    MatNativeDateModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    SimpleNotificationsModule.forRoot()
-],
+    MatCardModule,
+    MatButtonModule,
+    SimpleNotificationsModule.forRoot(),
+    SocialLoginModule
+  ],
   providers: [
 #foreach ($entity in $selectedEntities)
     ${entity.name}Service,
@@ -94,8 +124,12 @@ import { PagerService } from './services/pager.service';
     Configuration,
     EmitterService,
     NotificationService,
-    PagerService
-],
+    PagerService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

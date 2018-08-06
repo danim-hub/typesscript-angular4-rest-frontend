@@ -2,7 +2,7 @@
 
 import { Notification } from './notification.model';
 import { EmitterService } from './emitter.service';
-import { NotificationsService } from 'angular2-notifications';
+import { NotificationsService } from 'angular2-notifications/dist';
 import { Injectable } from '@angular/core';
 
 @Injectable()
